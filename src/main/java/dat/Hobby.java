@@ -26,6 +26,7 @@ public class Hobby {
     @Enumerated(EnumType.STRING)
     private Type type;
 
+
     public Hobby(String name, String category, Type type) {
         this.name = name;
         this.category = category;
