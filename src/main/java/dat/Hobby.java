@@ -5,6 +5,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
 
+import java.util.Set;
+
 @Getter
 @ToString
 @NoArgsConstructor
@@ -23,8 +25,13 @@ public class Hobby {
     @Column(name = "category", unique = true, nullable = false)
     private String category;
 
+    @ManyToMany
+    private Set<Person> person;
+
     @Enumerated(EnumType.STRING)
     private Type type;
+
+
 
 
     public Hobby(String name, String category, Type type) {
