@@ -31,13 +31,19 @@ public class Person {
     @Temporal(TemporalType.DATE)
     private LocalDate userCreated;
 
-    @OneToOne(mappedBy = "person", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @OneToOne(mappedBy = "person", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private PersonDetails personDetails;
 
-    @ManyToMany(mappedBy = "person", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    private Set<Hobby> hobbies = new HashSet<>();
+   /* @ManyToMany(mappedBy = "person", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    private Set<Hobby> hobbies = new HashSet<>(); */
 
-    @OneToMany(mappedBy = "person", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "person", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    private Set<HobbyPerson> hobbies = new HashSet<>();
+
+
+
+
+    @OneToMany(mappedBy = "person", cascade = CascadeType.ALL,fetch = FetchType.EAGER )
     private Set<Contact> contacts = new HashSet<>();
 
     public Person(String firstName, String lastName, LocalDate userCreated ) {
@@ -54,8 +60,9 @@ public class Person {
         }
 
     }
-    public void addHobbies(Hobby hobby) {
-     this.hobbies.add(hobby);
+    public void addHobbies(Hobby hobby, Person person) {
+         HobbyPerson hobbyPerson = new HobbyPerson(hobby, person);
+         this.hobbies.add(hobbyPerson);
     }
 
     public void addContacts(Contact contact) {

@@ -4,7 +4,9 @@ import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
+import org.hibernate.annotations.Fetch;
 
+import java.util.HashSet;
 import java.util.Set;
 
 @Getter
@@ -25,8 +27,11 @@ public class Hobby {
     @Column(name = "category", unique = true, nullable = false)
     private String category;
 
-    @ManyToMany
-    private Set<Person> person;
+    /*@ManyToMany(fetch = FetchType.EAGER)
+    private Set<Person> person; */
+
+    @OneToMany(mappedBy = "hobby", cascade = CascadeType.ALL)
+    private Set<HobbyPerson> persons= new HashSet<>();
 
     @Enumerated(EnumType.STRING)
     private Type type;

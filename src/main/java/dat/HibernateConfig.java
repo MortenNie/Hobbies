@@ -59,6 +59,7 @@ public class HibernateConfig {
         configuration.addAnnotatedClass(PersonDetails.class);
         configuration.addAnnotatedClass(Hobby.class);
         configuration.addAnnotatedClass(Contact.class);
+        configuration.addAnnotatedClass(HobbyPerson.class);
         
     }
 
