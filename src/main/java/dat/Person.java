@@ -37,6 +37,9 @@ public class Person {
     @ManyToMany(mappedBy = "person", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private Set<Hobby> hobbies = new HashSet<>();
 
+    @OneToMany(mappedBy = "person", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private Set<Contact> contacts = new HashSet<>();
+
     public Person(String firstName, String lastName, LocalDate userCreated ) {
         this.firstName = firstName;
         this.lastName = lastName;
@@ -53,5 +56,15 @@ public class Person {
     }
     public void addHobbies(Hobby hobby) {
      this.hobbies.add(hobby);
+    }
+
+    public void addContacts(Contact contact) {
+        this.contacts.add(contact);
+
+        if (contacts != null) {
+            contact.setPerson(this);
+
+        }
+
     }
 }
