@@ -52,6 +52,24 @@ public class HobbyDAO {
            return hobbiesPlusInterest;
         }
 
+    public Hobby retrieveHobbyForAssign(String hobbyName) {
+
+
+        try (var em = emf.createEntityManager()) {
+
+            TypedQuery<Hobby> query = em.createQuery("SELECT h FROM Hobby h WHERE h.name = :parameter", Hobby.class);
+            query.setParameter("parameter", hobbyName);
+            Hobby result = query.getSingleResult();
+
+            return result;
+
+        }
+    }
+
+
+
+
+
 
 }
 
