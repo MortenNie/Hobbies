@@ -10,7 +10,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 @Getter
-@ToString
+@ToString(exclude = "person")
 @NoArgsConstructor
 @Table(name = "hobby")
 @Entity
@@ -30,7 +30,7 @@ public class Hobby {
     /*@ManyToMany(fetch = FetchType.EAGER)
     private Set<Person> person; */
 
-    @OneToMany(mappedBy = "hobby", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "hobby", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private Set<HobbyPerson> persons= new HashSet<>();
 
     @Enumerated(EnumType.STRING)
