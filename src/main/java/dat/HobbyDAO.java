@@ -73,7 +73,7 @@ public class HobbyDAO {
 
         try (var em = emf.createEntityManager()) {
 
-            TypedQuery<Person> query = em.createQuery("SELECT h.persons FROM Hobby h WHERE h.name = :parameter", Person.class);
+            TypedQuery<Person> query = em.createQuery("SELECT ph FROM Person ph JOIN HobbyPerson e ON ph.id = e.id JOIN Hobby c ON e.id = c.id WHERE c.name = :parameter", Person.class);
             query.setParameter("parameter", hobbyName);
             List<Person> result = query.getResultList();
 

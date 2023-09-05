@@ -10,7 +10,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 @Getter
-@ToString(exclude = "person")
+@ToString(exclude = {"person", "hobbyperson"})
 @NoArgsConstructor
 @Table(name = "hobby")
 @Entity
