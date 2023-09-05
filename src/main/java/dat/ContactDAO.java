@@ -10,14 +10,14 @@ public class ContactDAO {
     EntityManagerFactory emf = HibernateConfig.getEntityManagerFactoryConfig();
 
 
-    public List<Contact> retrieveAllNumbersFromUser(int personId) {
+    public List<String> retrieveAllNumbersFromUser(Integer personId) {
 
 
         try (var em = emf.createEntityManager()) {
 
-            TypedQuery<Contact> query = em.createQuery("SELECT c FROM Contact c WHERE c.person.id = :parameter",Contact.class);
+            TypedQuery<String> query = em.createQuery("SELECT c.telephoneNumber FROM Contact c WHERE c.person.id = :parameter",String.class);
             query.setParameter("parameter", personId);
-            List<Contact> results = query.getResultList();
+            List<String> results = query.getResultList();
 
             return results;
 
