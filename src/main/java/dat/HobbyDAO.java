@@ -29,10 +29,10 @@ public class HobbyDAO {
 
         try (var em = emf.createEntityManager()) {
 
-            Query query = em.createQuery("SELECT count(hp) FROM HobbyPerson hp WHERE hp.hobby.id = :parameter");
+            Query query = em.createQuery("SELECT CAST(count(hp) AS integer) FROM HobbyPerson hp WHERE hp.hobby.id = :parameter");
             query.setParameter("parameter", hobbyId);
 
-            return (Integer) query.getSingleResult();
+            return (int) query.getSingleResult();
 
 
         }
