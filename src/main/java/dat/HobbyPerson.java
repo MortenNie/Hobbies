@@ -10,7 +10,7 @@ import lombok.ToString;
 @Setter
 @Getter
 @NoArgsConstructor
-@ToString
+@ToString(exclude = {"hobby", "person"})
 public class HobbyPerson {
 
     @Id

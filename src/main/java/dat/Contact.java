@@ -8,7 +8,7 @@ import lombok.ToString;
 
 @Getter
 @Setter
-@ToString
+@ToString(exclude = "person")
 @NoArgsConstructor
 @Table(name = "contact")
 @Entity
