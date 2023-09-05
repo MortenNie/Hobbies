@@ -24,7 +24,7 @@ public class Hobby {
     @Column(name = "name", unique = true, nullable = false)
     private String name;
 
-    @Column(name = "category", unique = true, nullable = false)
+    @Column(name = "category", nullable = false)
     private String category;
 
     /*@ManyToMany(fetch = FetchType.EAGER)

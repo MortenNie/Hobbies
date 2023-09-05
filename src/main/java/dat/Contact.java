@@ -14,10 +14,10 @@ import lombok.ToString;
 @Entity
 public class Contact {
     @Id
-    @Column(name = "email", unique = true, nullable = false)
+    @Column(name = "email", nullable = false)
     private String email;
 
-    @Column(name = "telephone-number", unique = true, nullable = false)
+    @Column(name = "telephone-number", nullable = false)
     private String telephoneNumber;
 
     @ManyToOne

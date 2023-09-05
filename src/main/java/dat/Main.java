@@ -8,22 +8,22 @@ import java.util.List;
 
 public class Main {
     public static void main(String[] args) {
-    /*    Person gudrund = new Person("Gudrund", "Jensen", LocalDate.of(2023, 9, 4));
-        PersonDetails gudrundsPersonalDetails = new PersonDetails("New Kagevej 7", "Kagerup", 8000);
-        gudrund.addPersonalDetails(gudrundsPersonalDetails);
+        Person sigrid = new Person("Sigrid", "Olafsdottir", LocalDate.of(2023, 9, 5));
+        PersonDetails sigridsPersonalDetails = new PersonDetails("New Vikingsvej 7", "Tarm", 6880);
+        sigrid.addPersonalDetails(sigridsPersonalDetails);
         Hobby hobby = new Hobby("Kage-making", "General", Hobby.Type.Inside);
-        gudrund.addHobbies(hobby, gudrund);
-        Contact contact = new Contact("kage@hotmail.com", "42424242");
-        gudrund.addContacts(contact);
+        sigrid.addHobbies(hobby, sigrid);
+        Contact contact = new Contact("Sigridmail@mail.dk", "42424252");
+        sigrid.addContacts(contact);
 
         EntityManagerFactory emf = HibernateConfig.getEntityManagerFactoryConfig();
         try (var em = emf.createEntityManager()) {
             em.getTransaction().begin();
             em.persist(hobby);
-            em.persist(gudrund);
+            em.persist(sigrid);
             em.getTransaction().commit();
 
-        } */
+        }
         HobbyDAO dao = new HobbyDAO();
         HashMap<String, Integer> interestplushobbies = dao.retrieveAllHobbiesPlusInterest();
         System.out.println(interestplushobbies);
