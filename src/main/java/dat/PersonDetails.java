@@ -20,9 +20,6 @@ public class PersonDetails {
     @Column(name = "address",nullable = false)
     private String address;
 
-    @Column (name = "city",nullable = false)
-    private String city;
-
     @Column(name= "zip",nullable = false)
     private int zip;
 
@@ -32,10 +29,21 @@ public class PersonDetails {
     @MapsId
     private Person person;
 
+    @OneToOne(mappedBy = "personDetails",cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    private Zipcode zipcode;
 
-    public PersonDetails(String address, String city, int zip) {
+    public void addZipcode(Zipcode zipcode) {
+        this.zipcode = zipcode;
+        if (zipcode != null) {
+            zipcode.setPersonDetails(this);
+
+        }
+
+    }
+
+
+    public PersonDetails(String address, int zip) {
         this.address = address;
-        this.city = city;
         this.zip = zip;
     }
 }

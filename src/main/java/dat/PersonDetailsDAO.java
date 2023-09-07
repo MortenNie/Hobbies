@@ -5,10 +5,7 @@ import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.Query;
 import jakarta.persistence.TypedQuery;
 
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 public class PersonDetailsDAO {
 
@@ -65,14 +62,20 @@ public class PersonDetailsDAO {
 
     }
 
-    public List<String> retrieveAllCitiesAndZips() {
+    public Map<String, Integer> retrieveAllCitiesAndZips() {
 
         try (var em = emf.createEntityManager()) {
+            Map<String, Integer> mapOfZipsAndCities = new HashMap<>();
+            TypedQuery<Zipcode> query = em.createQuery("SELECT p FROM Zipcode p", Zipcode.class);
+            List<Zipcode> citiesZips =query.getResultList();
 
-            TypedQuery<String> query = em.createQuery("SELECT DISTINCT CONCAT (p.city,p.zip) FROM PersonDetails p", String.class);
-            List<String> citiesZips =query.getResultList();
+            for (Zipcode s: citiesZips) {
+                mapOfZipsAndCities.put(s.getCity_name(),s.getZip());
 
-            return citiesZips;
+
+            }
+
+            return mapOfZipsAndCities;
         }
     }
 
