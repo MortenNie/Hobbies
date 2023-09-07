@@ -20,7 +20,7 @@ This is all done with the help and use of a database.
 [R-3.4] **A group description of your group work and how you have collaborated (GIT, Trello, Discord, who did what, etc.)**
 
 We have chosen to work together physically in the classroom every day from 10-15 and when we continue to work at home we discuss through our group discord channel. 
-Thursday we didn't have the classroom available, so we sat at the end of the hallway.
+Thursday we didn't have the classroom available, so we sat at the end of the hallway. We've also used Github Desktop to commit to our project.
 
 [R-3.5] **All technical requirements listed above under Project Requirements**
 

@@ -7,6 +7,7 @@ import lombok.ToString;
 import org.hibernate.annotations.Fetch;
 
 import java.util.HashSet;
+import java.util.Objects;
 import java.util.Set;
 
 @Getter
@@ -48,5 +49,18 @@ public class Hobby {
 
     public enum Type {
         Inside, Outside, Competition, Observation
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Hobby hobby = (Hobby) o;
+        return Objects.equals(name, hobby.name) && Objects.equals(category, hobby.category) && type == hobby.type;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(name, category, type);
     }
 }
