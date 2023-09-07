@@ -1,8 +1,5 @@
 package dat;
-import jakarta.persistence.EntityManager;
-import jakarta.persistence.EntityManagerFactory;
-import jakarta.persistence.Query;
-import jakarta.persistence.TypedQuery;
+import jakarta.persistence.*;
 
 import java.util.HashMap;
 import java.util.List;
@@ -81,6 +78,9 @@ public class PersonDAO {
         em.getTransaction().commit();
         em.close();
     }
+
+
+
 
 
 }

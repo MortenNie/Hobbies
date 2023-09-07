@@ -46,10 +46,10 @@ public class Person {
     @OneToMany(mappedBy = "person", cascade = CascadeType.ALL,fetch = FetchType.EAGER )
     private Set<Contact> contacts = new HashSet<>();
 
-    public Person(String firstName, String lastName, LocalDate userCreated ) {
+    public Person(String firstName, String lastName ) {
         this.firstName = firstName;
         this.lastName = lastName;
-        this.userCreated = userCreated;
+
     }
 
     public void addPersonalDetails(PersonDetails personDetails) {
@@ -72,6 +72,20 @@ public class Person {
             contact.setPerson(this);
 
         }
+
+    }
+
+    @PrePersist
+    public void onCreate() {
+        this.userCreated = LocalDate.now();
+
+
+    }
+
+    @PreUpdate
+    public void onUpdate() {
+        this.userCreated = LocalDate.now();
+
 
     }
 

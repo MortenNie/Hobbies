@@ -53,7 +53,7 @@ public class PersonDetailsDAO {
 
         try (var em = emf.createEntityManager()) {
 
-            TypedQuery<Person> query = em.createQuery("SELECT p FROM Person p JOIN p.personDetails c JOIN c.zipcode WHERE c = :parameter", Person.class);
+            TypedQuery<Person> query = em.createQuery("SELECT p FROM Person p JOIN PersonDetails c ON p.id = c.id JOIN Zipcode k ON c.zip = k.zip WHERE k.city_name = :parameter", Person.class);
             query.setParameter("parameter", cityName);
             List<Person> resultByCity = query.getResultList();
 
