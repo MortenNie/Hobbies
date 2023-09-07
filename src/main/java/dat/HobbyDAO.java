@@ -1,5 +1,6 @@
 package dat;
 
+import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.Query;
 import jakarta.persistence.TypedQuery;
@@ -83,6 +84,48 @@ public class HobbyDAO {
 
 
 
+    }
+
+    public Hobby saveHobby(Hobby hobby)
+    {
+        EntityManager em = emf.createEntityManager();
+        em.getTransaction().begin();
+        em.persist(hobby);
+        em.getTransaction().commit();
+        em.close();
+        return hobby;
+    }
+
+    public Hobby findByIdHobby(int id)
+    {
+        EntityManager em = emf.createEntityManager();
+        Hobby foundHobby = em.find(Hobby.class, id);
+        em.close();
+        return foundHobby;
+    }
+
+    public Hobby updateHobby(Hobby hobby)
+    {
+        EntityManager em = emf.createEntityManager();
+        em.getTransaction().begin();
+        Hobby updatedHobby = em.merge(hobby);
+        em.getTransaction().commit();
+        em.close();
+        return updatedHobby;
+
+    }
+
+    public void deleteHobby(int id)
+    {
+        EntityManager em = emf.createEntityManager();
+        em.getTransaction().begin();
+        Hobby hobby = findByIdHobby(id);
+        if (hobby != null)
+        {
+            em.remove(hobby);
+        }
+        em.getTransaction().commit();
+        em.close();
     }
 
 
