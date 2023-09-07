@@ -1,6 +1,7 @@
 package dat;
 
 
+import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.Query;
 import jakarta.persistence.TypedQuery;
@@ -52,7 +53,7 @@ public class PersonDetailsDAO {
 
         try (var em = emf.createEntityManager()) {
 
-            TypedQuery<Person> query = em.createQuery("SELECT p FROM Person p JOIN p.personDetails c WHERE c.city = :parameter", Person.class);
+            TypedQuery<Person> query = em.createQuery("SELECT p FROM Person p JOIN p.personDetails c JOIN c.zipcode WHERE c = :parameter", Person.class);
             query.setParameter("parameter", cityName);
             List<Person> resultByCity = query.getResultList();
 
@@ -77,6 +78,47 @@ public class PersonDetailsDAO {
 
             return mapOfZipsAndCities;
         }
+    }
+    public PersonDetails savePersonalDetails(PersonDetails personDetails)
+    {
+        EntityManager em = emf.createEntityManager();
+        em.getTransaction().begin();
+        em.persist(personDetails);
+        em.getTransaction().commit();
+        em.close();
+        return personDetails;
+    }
+
+    public PersonDetails findByIdPersonDetails(int id)
+    {
+        EntityManager em = emf.createEntityManager();
+        PersonDetails foundPersonDetails = em.find(PersonDetails.class, id);
+        em.close();
+        return foundPersonDetails;
+    }
+
+    public PersonDetails updatePersonDetails(PersonDetails personDetails)
+    {
+        EntityManager em = emf.createEntityManager();
+        em.getTransaction().begin();
+        PersonDetails updatedPersonDetails = em.merge(personDetails);
+        em.getTransaction().commit();
+        em.close();
+        return updatedPersonDetails;
+
+    }
+
+    public void deletePersonDetails(int id)
+    {
+        EntityManager em = emf.createEntityManager();
+        em.getTransaction().begin();
+        PersonDetails personDetails = findByIdPersonDetails(id);
+        if (personDetails != null)
+        {
+            em.remove(personDetails);
+        }
+        em.getTransaction().commit();
+        em.close();
     }
 
 }
