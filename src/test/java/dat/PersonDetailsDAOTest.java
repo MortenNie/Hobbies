@@ -70,17 +70,29 @@ class PersonDetailsDAOTest {
     @Test
     void getAllInfoFromID() {
 
-        
+    //sammensat af getGetallDetails og getALlContactInfo
 
 
     }
 
     @Test
     void retrieveAllPersonsByCity() {
+        List<Person> people = new ArrayList<>();
+        Person p1 = new Person("Egon", "Olsen");
+        Person p2 = new Person("Gudrund", "Jensen");
+        people.add(p1);
+        people.add(p2);
+        people.add(p1);
+        people.add(p2);
+        List<Person> actual = pdDAO.retrieveAllPersonsByCity("Kongens Lyngby");
+        assertEquals(actual, people);
+
+
     }
 
     @Test
     void retrieveAllCitiesAndZips() {
+        // for omfattende at teste, vores testdatabase virker ikke.
     }
 
     private static void createPeople() {
