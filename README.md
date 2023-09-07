@@ -1,5 +1,11 @@
 # Hobbies
 
+
+<h2>Hold B Gruppe 7</h2>
+Morten, Dimitra, Jakob
+<br>
+<br>
+
 [R-3.1] **A description of your business idea**
 
 We would like to connect people with their chosen and favourite hobbies.
